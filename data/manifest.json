@@ -1,0 +1,10 @@
+{
+    "company_id": 1,
+    "company_name": "Google",
+    "user_id" : 5,
+    "data_folder": "files",
+    "chunk_size":512,
+    "chunk_overlap":20,
+    "embedding_batch_size":10,
+    "embedding_model": "text-embedding-3-small"
+}

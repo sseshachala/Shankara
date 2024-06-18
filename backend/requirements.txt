@@ -1,0 +1,10 @@
+llama-index-vector-stores-postgres
+llama-index
+openai
+mysql-connector-python
+pypdf
+langchain
+faiss-cpu
+psycopg2-binary
+llama-index-embeddings-openai
+docx2txt
