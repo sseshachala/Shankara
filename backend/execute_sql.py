@@ -1,5 +1,6 @@
 import psycopg2
 import os
+import json
 
 # Configuration for the database connection
 db_config = {
@@ -11,26 +12,30 @@ db_config = {
 }
 
 # Function to execute SQL commands from a file
-def execute_sql_from_file(file_path):
+def execute_sql_from_file():
+
+     # Load environment variables
+    with open('.env.json') as f:
+        env = json.load(f)
+    print(env)
+    
+    db_config= {
+        'dbname': env.get('PG_DBNAME'),
+        'user': env.get('PG_USER'),
+        'password': env.get('PG_PASSWORD'),
+        'host': env.get('PG_HOST'),
+        'port': env.get('PG_PORT')
+    }
     # Connect to the PostgreSQL database
     conn = psycopg2.connect(**db_config)
     cursor = conn.cursor()
 
+    print(conn)
+
     try:
-        # Read SQL commands from the file
-        with open(file_path, 'r') as sql_file:
-            sql_commands = sql_file.read()
-
-        # Execute each SQL command
-        commands = sql_commands.split(';')
-        for command in commands:
-            command = command.strip()
-            if command:
-                cursor.execute(command)
-                print(f"Executed: {command}")
-
+       cursor.execute("select * from shankara_embeddings")
         # Commit the changes
-        conn.commit()
+       conn.commit()
 
     except Exception as e:
         print(f"Error: {e}")
@@ -43,10 +48,10 @@ def execute_sql_from_file(file_path):
 # Main function
 def main():
     # Path to the SQL file
-    sql_file_path = '/Users/ctp1126/Project/Shankara/backend/database/create.sql'  # Replace with the path to your SQL file
+    # sql_file_path = '/Users/ctp1126/Project/Shankara/backend/database/create.sql'  # Replace with the path to your SQL file
 
     # Execute SQL commands from the file
-    execute_sql_from_file(sql_file_path)
+    execute_sql_from_file()
 
 if __name__ == '__main__':
     main()

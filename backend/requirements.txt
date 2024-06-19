@@ -1,4 +1,5 @@
-llama-index-vector-stores-postgres
+python-dotenv
+psycopg2-binary
 llama-index
 openai
 mysql-connector-python
@@ -8,3 +9,8 @@ faiss-cpu
 psycopg2-binary
 llama-index-embeddings-openai
 docx2txt
+pandas
+transformers
+optimum[exporters]
+InstructorEmbedding
+sentence_transformers 
